@@ -1,0 +1,85 @@
+package oprajneniq;
+
+import java.util.Scanner;
+
+public class TransportPrice {
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+
+
+        double nKilometri = Double.parseDouble(scanner.nextLine());
+        String daynight = scanner.nextLine();
+
+        double taxiSumaday = 0.70 + nKilometri * 0.79;
+        double taxiSumanight = 0.70 + nKilometri * 0.90;
+        double avtobus = 0.09 * nKilometri;
+        double vlak = 0.06 * nKilometri;
+
+        //Kogato km sa pod 20 transporta moje da bude samo taxi;
+        if (nKilometri < 20)
+        {
+            if (daynight =="day")
+            {
+                System.out.printf("%.2f",taxiSumaday);
+            }
+            else if (daynight == "night")
+            {
+                System.out.printf("%.2f",taxiSumanight);
+            }
+        }
+
+        //Kogato km sa nad 20 transporta shte e taxi ili avtobus;
+        if (nKilometri < 100 && nKilometri > 20)
+        {
+            if (daynight == "day")
+            {
+                if (avtobus < taxiSumaday)
+                {
+                    System.out.printf("%.2f",avtobus);
+                }
+                else
+                {
+                    System.out.printf("%.2f",taxiSumaday);
+                }
+
+            }
+            else if (daynight == "night")
+            {
+                if (avtobus < taxiSumaday)
+                {
+                    System.out.printf("%.2f",avtobus);
+                }
+                else
+                {
+                    System.out.printf("%.2f",taxiSumaday);
+                }
+            }
+
+        }
+
+        //Kogato km sa nad 100 transportut moje da e i ot trite tipa;
+        if (nKilometri > 100 ) {
+            if (daynight == "day") {
+                if (vlak < taxiSumaday && vlak < avtobus) {
+                    System.out.printf("%.2f", vlak);
+                } else if (avtobus < taxiSumaday && avtobus < vlak) {
+                    System.out.printf("{%.2f", avtobus);
+                } else {
+                    System.out.printf("%.2f", taxiSumaday);
+                }
+
+            } else if (daynight == "night") {
+                if (vlak < taxiSumaday && vlak < avtobus) {
+                    System.out.printf("%.2f", vlak);
+                } else if (avtobus < taxiSumaday && avtobus < vlak) {
+
+                    System.out.printf("%.2f", avtobus);
+
+                } else {
+                    System.out.printf("%.2f", taxiSumaday);
+                }
+            }
+        }
+
+    }
+}
