@@ -1,0 +1,31 @@
+package oprajneniq;
+
+import java.util.Scanner;
+
+public class pipesInPool {
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+
+
+        double volumePool = Double.parseDouble(scanner.nextLine());
+        double pipeOne =Double.parseDouble(scanner.nextLine());
+        double pipeTwo = Double.parseDouble(scanner.nextLine());
+        double hours =Double.parseDouble(scanner.nextLine());
+
+        double volumeFull =(pipeOne+pipeTwo)*hours;
+        double volumeOverFull = (volumeFull-volumePool);
+        double pipePoolnPersent=(volumeFull/volumePool)*100;
+        double pipeOnePersent=((pipeOne*hours/volumeFull))*100;
+        double pipeTwoPersent=(pipeTwo*hours)/volumeFull*100;
+
+        if (volumeFull<volumePool)
+        {
+
+            System.out.printf("The pool is %.0f%% full. Pipe 1: %.2f%%. Pipe 2: %.0f.",Math.floor(pipePoolnPersent),Math.floor(pipeOnePersent),Math.floor(pipeTwoPersent));
+        }
+        else
+        {
+            System.out.printf("For %f.02f%% hours the pool overflows with %f.02f%% liters.",hours,volumeOverFull);
+        }
+    }
+}
